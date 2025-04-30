@@ -7,3 +7,8 @@
 - Ús de comentaris en el codi font. (1p) ✅
 
 ## DETALLES MÍNIMOS
+1. Si no tiene póster le ponemos una imagen predeterminada de por ejemplo "poster not found".
+2. Le hemos añadido la rueda de load cuando "clickamos" la lupa para que el usuario pueda ver algo mientras cargan los datos.
+3. Cuando cargamos la página por primera vez lo mostramos sin los posters predefinidos.
+4. solo se mostraran las sugerencias a partir de 3 letras (evitar abrumación de sugerencias).
+5. cuando clickamos ya sea en sugerencias o en la ficha normal que se abra en otra pestaña envez de la misma (_blanck)
