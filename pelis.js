@@ -1,6 +1,6 @@
 window.onload = function () {
 
-    // VARIABLES
+    // VARIABLES //
 
     const API_KEY = "55562c90a82d558d6998e038a072ba37";
     const BASE_URL = "https://api.themoviedb.org/3";
@@ -14,13 +14,13 @@ window.onload = function () {
     // LIMPIAMOS EL CONTENEDOR DE PELIS
     moviesContainer.innerHTML = '';
 
-    // EVENTOS
+    // EVENTOS // 
 
     input.addEventListener('input', loadSuggestions);
     suggestions.addEventListener('click', accesoFitxa);
     searchButton.addEventListener('click', layaout);
 
-    // FUNCIONES
+    // FUNCIONES //
 
     // Buscar sugerencias
     async function loadSuggestions() {
