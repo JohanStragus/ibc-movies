@@ -1,0 +1,228 @@
+<html class="h-100">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Activitat DAW-M6">
+	<meta name="author" content="Anton Dalmau">
+	<title>IBC Movies Database</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+	<link rel="icon"
+		href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📽️</text></svg>">
+	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<script src="pelis.js"></script>
+
+	<style>
+		#suggestions {
+			display: block;
+			position: absolute;
+			z-index: 90;
+			padding: 5px;
+			margin-top: 1px;
+			cursor: pointer;
+		}
+
+		#suggestions div {
+			padding: 10px;
+		}
+
+		#suggestions div:hover {
+			background-color: #86ecfc;
+		}
+
+		.elem-mid {
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		.loading {
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: rgba(0, 0, 0, 0.4);
+			width: 100%;
+			height: 100%;
+			z-index: 99;
+			text-align: center;
+			font-size: 10vw;
+		}
+
+		.rotate {
+			animation: rotation 8s infinite linear;
+			display: inline-block;
+		}
+
+		@keyframes rotation {
+			from {
+				transform: rotate(0deg);
+			}
+
+			to {
+				transform: rotate(359deg);
+			}
+		}
+	</style>
+</head>
+
+<body class="h-100 d-flex flex-column">
+
+	<div class="loading" style="display: none;">
+		<div class="elem-mid">
+			<div class="rotate"><i class="bi bi-arrow-repeat text-primary"></i></div>
+		</div>
+	</div>
+
+	<div class="px-4 py-2 text-center">
+		<h1 class="display-5 fw-bold"><i class="bi bi-camera-reels"></i></h1>
+		<h1 class="display-5 fw-bold">IBC Movies Database</h1>
+	</div>
+
+	<div class="container flex-shrink-0 text-center">
+		<h2 class="lead">Escriu el nom de la pel·lícula</h2>
+		<div class="row py-3 text-center">
+			<div id="content" class="col-lg-6 mx-auto text-left">
+				<div class="form-inline">
+					<div class="input-group input-group-sm col-sm-12">
+						<input class="search_query form-control" type="text" name="key" id="filmSearch"
+							autocomplete="off" placeholder="Cercar...">
+						<span class="input-group-btn">
+							<button class="btn btn-info btn-flat disabled" id="filmButton"><i
+									class="bi-search"></i></button>
+						</span>
+					</div>
+				</div>
+				<div class="input-group input-group-sm col-sm-12">
+					<div class="card" id="suggestions" style="display: none;">
+						<div class="suggest-element" id="624860">The Matrix Resurrections</div>
+						<div class="suggest-element" id="603">The Matrix</div>
+						<div class="suggest-element" id="604">The Matrix Reloaded</div>
+						<div class="suggest-element" id="605">The Matrix Revolutions</div>
+						<div class="suggest-element" id="14543">The Matrix Revisited</div>
+						<div class="suggest-element" id="51767">Sexual Matrix</div>
+						<div class="suggest-element" id="221495">The Matrix Recalibrated</div>
+						<div class="suggest-element" id="591955">The Matrix Reloaded Revisited</div>
+						<div class="suggest-element" id="684731">The Matrix Reloaded: Pre-Load</div>
+						<div class="suggest-element" id="684428">The Matrix: What Is Bullet-Time?</div>
+						<div class="suggest-element" id="33322">Armitage III: Poly Matrix</div>
+						<div class="suggest-element" id="21769">Armitage: Dual Matrix</div>
+						<div class="suggest-element" id="684735">Making 'Enter the Matrix'</div>
+						<div class="suggest-element" id="696109">A Glitch in the Matrix</div>
+						<div class="suggest-element" id="503880">The Matrix Revolutions Revisited</div>
+						<div class="suggest-element" id="129399">Time Matrix</div>
+						<div class="suggest-element" id="684431">Making 'The Matrix'</div>
+						<div class="suggest-element" id="684729">The Matrix Reloaded: Car Chase</div>
+						<div class="suggest-element" id="217056">Matrix of Evil</div>
+						<div class="suggest-element" id="141225">Buhera mátrix</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row mt-5" id="movies" style="">
+
+			<div class="col-md-4">
+				<div class="card mb-4 box-shadow">
+					<img class="card-img-top"
+						data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+						alt="Thumbnail [100%x225]" style="width: 100%; display: block;"
+						src="https://image.tmdb.org/t/p/original/8c4a8kE7PizaGQQnditMmI1xbRp.jpg"
+						data-holder-rendered="true">
+					<div class="card-body text-center">
+						<h5 class="card-title text-center">The Matrix Resurrections</h5>
+						<div><small class="text-muted"><i class="bi bi-film mx-2"> </i> Science Fiction, Action,
+								Adventure</small></div>
+						<div><small class="text-muted"><i class="bi bi-calendar3 mx-2"> </i> 16-11-2021</small></div>
+						<small class="text-muted"><i class="bi bi-people mx-2"></i> Keanu Reeves, Carrie-Anne Moss,
+							Yahya Abdul-Mateen II</small>
+					</div>
+					<div class="card-footer bg-primary text-white text-center">
+						<a href="https://www.imdb.com/title/tt10838180/" class="text-white"><i class="bi bi-eye"></i>
+							Veure fitxa a IMDB</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card mb-4 box-shadow">
+					<img class="card-img-top"
+						data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+						alt="Thumbnail [100%x225]" style="width: 100%; display: block;"
+						src="https://image.tmdb.org/t/p/original/fgm8OZ7o4G1G1I9EeGcb85Noe6L.jpg"
+						data-holder-rendered="true">
+					<div class="card-body text-center">
+						<h5 class="card-title text-center">The Matrix Revolutions</h5>
+						<div><small class="text-muted"><i class="bi bi-film mx-2"> </i> Adventure, Action, Thriller,
+								Science Fiction</small></div>
+						<div><small class="text-muted"><i class="bi bi-calendar3 mx-2"> </i> 05-10-2003</small></div>
+						<small class="text-muted"><i class="bi bi-people mx-2"></i> Keanu Reeves, Laurence Fishburne,
+							Carrie-Anne Moss</small>
+					</div>
+					<div class="card-footer bg-primary text-white text-center">
+						<a href="https://www.imdb.com/title/tt0242653/" class="text-white"><i class="bi bi-eye"></i>
+							Veure fitxa a IMDB</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card mb-4 box-shadow">
+					<img class="card-img-top"
+						data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+						alt="Thumbnail [100%x225]" style="width: 100%; display: block;"
+						src="https://image.tmdb.org/t/p/original/9TGHDvWrqKBzwDxDodHYXEmOE6J.jpg"
+						data-holder-rendered="true">
+					<div class="card-body text-center">
+						<h5 class="card-title text-center">The Matrix Reloaded</h5>
+						<div><small class="text-muted"><i class="bi bi-film mx-2"> </i> Adventure, Action, Thriller,
+								Science Fiction</small></div>
+						<div><small class="text-muted"><i class="bi bi-calendar3 mx-2"> </i> 15-04-2003</small></div>
+						<small class="text-muted"><i class="bi bi-people mx-2"></i> Keanu Reeves, Laurence Fishburne,
+							Carrie-Anne Moss</small>
+					</div>
+					<div class="card-footer bg-primary text-white text-center">
+						<a href="https://www.imdb.com/title/tt0234215/" class="text-white"><i class="bi bi-eye"></i>
+							Veure fitxa a IMDB</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card mb-4 box-shadow">
+					<img class="card-img-top"
+						data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+						alt="Thumbnail [100%x225]" style="width: 100%; display: block;"
+						src="https://image.tmdb.org/t/p/original/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg"
+						data-holder-rendered="true">
+					<div class="card-body text-center">
+						<h5 class="card-title text-center">The Matrix</h5>
+						<div><small class="text-muted"><i class="bi bi-film mx-2"> </i> Action, Science Fiction</small>
+						</div>
+						<div><small class="text-muted"><i class="bi bi-calendar3 mx-2"> </i> 30-02-1999</small></div>
+						<small class="text-muted"><i class="bi bi-people mx-2"></i> Keanu Reeves, Laurence Fishburne,
+							Carrie-Anne Moss</small>
+					</div>
+					<div class="card-footer bg-primary text-white text-center">
+						<a href="https://www.imdb.com/title/tt0133093/" class="text-white"><i class="bi bi-eye"></i>
+							Veure fitxa a IMDB</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<footer class="footer bg-light mt-auto py-3">
+		<div class="container text-center">
+			<span class="text-muted"><a href="https://www.insbaixcamp.org">© Institut Baix Camp</a></span>
+		</div>
+	</footer>
+
+</body>
+
+</html>
